@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/AstrosTech/react-ecommerce/issues"
   },
-  "homepage": "https://github.com/AstrosTech/react-ecommerce#readme"
+  "homepage": "https://github.com/AstrosTech/react-ecommerce#readme",
+  "devDependencies": {
+    "concurrently": "^5.1.0"
+  }
 }

@@ -4,7 +4,6 @@ mongoose.connect('mongodb+srv://root:20GgrNkplXGiyKMp@cluster0.0wu5d.mongodb.net
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useCreateIndex: true,
     }
 );
 
