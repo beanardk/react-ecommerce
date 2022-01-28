@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+require('dotenv').config()
 
-mongoose.connect('mongodb+srv://root:20GgrNkplXGiyKMp@cluster0.0wu5d.mongodb.net/Ecommerce-Database?retryWrites=true&w=majority',
+mongoose.connect(process.env.DATABASE_URI,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
