@@ -22,12 +22,7 @@ import {
     numReviews: 34,
   };
   
-  interface RatingProps {
-    rating: number;
-    numReviews: number;
-  }
-  
-  function Rating({ rating, numReviews }: RatingProps) {
+  function Rating({ rating, numReviews }) {
     return (
       <Box d="flex" alignItems="center">
         {Array(5)
