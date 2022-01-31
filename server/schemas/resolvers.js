@@ -5,8 +5,31 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        test: () => {
-            return 'working query'
+        /* Accounts */
+        getAccount: (parent, { accountId }) => {
+            return Account.findById(accountId)
+        },
+
+        getAllAccounts: () => {
+          return Account.find({})
+        },
+        
+        /* Products */
+        getProduct: (parent, { productId }) => { // Product ID is referring to the stripe product id
+          return Product.findOne({ productId })
+        },
+
+        getAllProducts: () => {
+          return Product.find({})
+        },
+
+        /* Purchases */
+        getPurchase: (parent, { purchaseId }) => {
+          return Purchase.findById(purchaseId)
+        },
+
+        getAllPurchases: () => {
+          return Purchase.find({})
         }
     },
 
@@ -14,8 +37,10 @@ const resolvers = {
         addAccount: async (parent, { email, password }) => {
             const user = await Account.create({ email, password });
             const token = signToken(user);
+            
             return { token, user };
         },
+
         login: async (parent, { email, password }) => {
             const user = await Account.findOne({ email });
       
@@ -32,7 +57,7 @@ const resolvers = {
             const token = signToken(user);
       
             return { token, user };
-          },
+          }
     }
 }
 

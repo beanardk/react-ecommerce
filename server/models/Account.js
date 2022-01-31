@@ -25,6 +25,17 @@ const accountSchema = new Schema({
         default: Date.now
     },
 
+    stripeCustomerId: {
+        type: String
+    },
+
+    cart: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Product"
+        }
+    ],
+
     purchases: [
         {
             type: Schema.Types.ObjectId,
@@ -33,18 +44,17 @@ const accountSchema = new Schema({
     ]
 });
 
-accountSchema.pre('save', async function (next) {
+accountSchema.pre('save', async (next) => {
     if (this.isNew || this.isModified('password')) {
-      const saltRounds = 10;
-      this.password = await bcrypt.hash(this.password, saltRounds);
+        const saltRounds = 10;
+        this.password = await bcrypt.hash(this.password, saltRounds);
     }
-  
     next();
-  });
-  
-  accountSchema.methods.isCorrectPassword = async function (password) {
+});
+    
+accountSchema.methods.isCorrectPassword = async (password) => {
     return bcrypt.compare(password, this.password);
-  };
+};
 
 const Account = model('Account', accountSchema);
 

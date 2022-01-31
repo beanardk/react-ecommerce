@@ -22,6 +22,7 @@ const typeDefs = gql`
         password: String
         createdAt: Date
         isAdmin: Boolean
+        cart: [Product]
         purchases: [Purchases]
     }
 
