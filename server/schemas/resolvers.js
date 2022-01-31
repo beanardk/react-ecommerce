@@ -89,12 +89,18 @@ const resolvers = {
             name: name,
             description: description,
             shippable: true
-          });
+          },
+          {
+            apiKey: process.env.STRIPE_SECRET
+          }
+          );
 
           const stripePrice = await stripe.prices.create({
             unit_amount: toCent(price),
             currency: 'usd',
             product: stripeProduct.id
+          }, {
+            apiKey: process.env.STRIPE_SECRET
           })
 
           let savedProduct = await Product.create({
@@ -106,6 +112,14 @@ const resolvers = {
           })
 
           return savedProduct
+        },
+
+        archiveProduct: async (parent, { productId }) => {
+          let product = await Product.findOneAndDelete({ productId })
+
+          stripe.products.update(productId, { active: false } );
+
+          return product
         }
     }
 }

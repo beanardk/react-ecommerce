@@ -60,6 +60,7 @@ const typeDefs = gql`
         addAccount(email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
         createProduct(name: String!, description: String!, price: Float!): Product
+        archiveProduct(productId: String): Product # Cannot delete products through api, only able to archive ( soft delete )
     }
 `
 
