@@ -5,8 +5,8 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        test: () => {
-            return 'working query'
+        accounts: () => {
+            return Account.find();
         }
     },
 
