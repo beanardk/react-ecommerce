@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 require('dotenv').config()
 
-mongoose.connect(process.env.DATABASE_URI,
+mongoose.connect("mongodb://localhost/mern-ecommerce",
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,

@@ -9,9 +9,12 @@ import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Signup from './pages/signup';
 import Login from './pages/login';
+<<<<<<< HEAD
 import navbar from './components/navbar';
 import { Box } from '@chakra-ui/react'
 import { Container } from '@chakra-ui/react'
+=======
+>>>>>>> 1c72a3bc0331e8f4e936874ef0377d851c02c1da
 
 
 const httpLink = createHttpLink({

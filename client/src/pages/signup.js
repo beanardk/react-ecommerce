@@ -6,6 +6,11 @@ import { ADD_ACCOUNT } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
+import { Container } from '@chakra-ui/react';
+import { Input } from '@chakra-ui/react';
+import { Button, ButtonGroup } from '@chakra-ui/react';
+import { Text } from '@chakra-ui/react'
+
 const Signup = () => {
   const [formState, setFormState] = useState({
     email: '',
@@ -30,7 +35,7 @@ const Signup = () => {
       const { data } = await addAccount({
         variables: { ...formState },
       });
-
+console.log(data);
       Auth.login(data.addAccount.token);
     } catch (e) {
       console.error(e);
@@ -38,11 +43,8 @@ const Signup = () => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
-          <div className="card-body">
+    <Container mt={[100]}align='center'>
+          <Text mb={[25]} align='center'>Sign Up</Text>
             {data ? (
               <p>
                 Success! You may now head{' '}
@@ -50,7 +52,7 @@ const Signup = () => {
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>
-                <input
+                <Input size='lg' 
                   className="form-input"
                   placeholder="Your email"
                   name="email"
@@ -58,7 +60,7 @@ const Signup = () => {
                   value={formState.email}
                   onChange={handleChange}
                 />
-                <input
+                <Input size='lg' 
                   className="form-input"
                   placeholder="******"
                   name="password"
@@ -66,13 +68,12 @@ const Signup = () => {
                   value={formState.password}
                   onChange={handleChange}
                 />
-                <button
-                  className="btn btn-block btn-primary"
+                <Button colorScheme='blue' size='md'
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >
                   Submit
-                </button>
+                </Button>
               </form>
             )}
 
@@ -81,10 +82,7 @@ const Signup = () => {
                 {error.message}
               </div>
             )}
-          </div>
-        </div>
-      </div>
-    </main>
+    </Container>
   );
 };
 
