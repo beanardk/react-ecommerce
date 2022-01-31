@@ -18,6 +18,7 @@ const typeDefs = gql`
 
     type Account {
         _id: ID
+        email: String
         password: String
         createdAt: Date
         isAdmin: Boolean
@@ -43,7 +44,8 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        test: String
+        addAccount(email: String!, password: String!): Auth
+        login(email: String!, password: String!): Auth
     }
 `
 
