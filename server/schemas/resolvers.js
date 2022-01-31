@@ -5,13 +5,14 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        test: () => {
-            return 'working query'
+        accounts: () => {
+            return Account.find();
         }
     },
 
     Mutation: {
         addAccount: async (parent, { email, password }) => {
+          console.log("Hello")
             const user = await Account.create({ email, password });
             const token = signToken(user);
             return { token, user };

@@ -39,8 +39,13 @@ const typeDefs = gql`
         purchasedAt: Date
     }
 
+    type Auth {
+        token: ID!
+        account: Account
+      }
+
     type Query {
-        test: String
+        accounts: [Account]
     }
 
     type Mutation {
