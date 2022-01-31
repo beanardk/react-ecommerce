@@ -31,6 +31,7 @@ const typeDefs = gql`
         description: String
         price: Float
         productId: String
+        priceId: String
         purchases: [Purchases]
     }
 
@@ -40,13 +41,25 @@ const typeDefs = gql`
         purchasedAt: Date
     }
 
+    type Auth {
+        token: ID!
+        account: Account
+    }
+
     type Query {
-        test: String
+        getAccount(accountId: ID): Account
+        getAllAccounts: [Account]
+        getProduct(productId: ID): Product
+        getAllProducts: [Product]
+        getPurchase(purchaseId: ID): Purchases
+        getAllPurchases: [Purchases]
+        createCheckout: String
     }
 
     type Mutation {
         addAccount(email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
+        createProduct(name: String!, description: String!, price: Float!): Product
     }
 `
 

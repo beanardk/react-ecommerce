@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const accountSchema = new Schema({
     email: {
@@ -32,7 +33,12 @@ const accountSchema = new Schema({
     cart: [
         {
             type: Schema.Types.ObjectId,
-            ref: "Product"
+            ref: "Product",
+
+            quantity: {
+                type: Number,
+                default: 1
+            }
         }
     ],
 

@@ -22,6 +22,11 @@ const productSchema = new Schema({
         required: true
     },
 
+    priceId: { // Provided by stripe
+        type: String,
+        required: true
+    },
+
     purchases: {
         type: Schema.Types.ObjectId,
         ref: "Purchases"
