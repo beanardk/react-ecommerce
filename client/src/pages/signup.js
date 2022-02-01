@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 import { useMutation } from '@apollo/client';
 import { ADD_ACCOUNT } from '../utils/mutations';
@@ -7,9 +7,21 @@ import { ADD_ACCOUNT } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 import { Container } from '@chakra-ui/react';
-import { Input } from '@chakra-ui/react';
-import { Button, ButtonGroup } from '@chakra-ui/react';
-import { Text } from '@chakra-ui/react'
+// import { Input } from '@chakra-ui/react';
+// import { Button, ButtonGroup } from '@chakra-ui/react';
+// import { Text } from '@chakra-ui/react'
+
+import {
+  Flex,
+  Box,
+  Input,
+  Stack,
+  Button,
+  Heading,
+  Text,
+  useColorModeValue,
+  Link,
+} from '@chakra-ui/react';
 
 const Signup = () => {
   const [formState, setFormState] = useState({
@@ -40,19 +52,32 @@ console.log(data);
     } catch (e) {
       console.error(e);
     }
-  };
+  }; 
 
   return (
-    <Container mt={[100]}align='center'>
-          <Text mb={[25]} align='center'>Sign Up</Text>
-            {data ? (
-              <p>
+    <Flex
+      minH={'100vh'}
+      align={'center'}
+      justify={'center'}
+      bg={useColorModeValue('gray.50', 'gray.800')}>
+      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+        <Stack align={'center'}>
+          <Heading fontSize={'4xl'}>Create your account!</Heading>
+        </Stack>
+        <Box
+          rounded={'lg'}
+          bg={useColorModeValue('white', 'gray.700')}
+          boxShadow={'lg'}
+          p={8}>
+          <Stack spacing={4}>
+          {data ? (
+              <Text>
                 Success! You may now head{' '}
                 <Link to="/">back to the homepage.</Link>
-              </p>
+              </Text>
             ) : (
               <form onSubmit={handleFormSubmit}>
-                <Input size='lg' 
+                <Input size='lg'
                   className="form-input"
                   placeholder="Your email"
                   name="email"
@@ -61,29 +86,38 @@ console.log(data);
                   onChange={handleChange}
                 />
                 <Input size='lg' 
+                  mt={[15]} 
                   className="form-input"
-                  placeholder="******"
+                  placeholder="password"
                   name="password"
                   type="password"
                   value={formState.password}
                   onChange={handleChange}
                 />
-                <Button colorScheme='blue' size='md'
-                  style={{ cursor: 'pointer' }}
-                  type="submit"
-                >
-                  Submit
-                </Button>
+                <Stack spacing={10}>
+                  <Button
+                    mt={[15]} 
+                    type='submit'
+                    bg={'blue.400'}
+                    color={'white'}
+                    _hover={{
+                      bg: 'blue.500',
+                    }}>
+                    Sign in
+                  </Button>
+                </Stack>
               </form>
             )}
-
-            {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
-              </div>
-            )}
-    </Container>
+          </Stack>
+        </Box>
+      </Stack>
+    </Flex>
   );
 };
 
 export default Signup;
+
+
+ 
+           
+     
