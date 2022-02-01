@@ -23,5 +23,8 @@
   "homepage": "https://github.com/AstrosTech/react-ecommerce#readme",
   "devDependencies": {
     "concurrently": "^5.1.0"
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "^1.1.1"
   }
 }
