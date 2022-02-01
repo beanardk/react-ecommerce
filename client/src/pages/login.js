@@ -1,15 +1,26 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_ACCOUNT } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
+import {
+  Flex,
+  Box,
+  Input,
+  Stack,
+  Link,
+  Button,
+  Heading,
+  Text,
+  useColorModeValue,
+} from '@chakra-ui/react';
+
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN_ACCOUNT);
 
-  // update state based on form input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -19,7 +30,6 @@ const Login = (props) => {
     });
   };
 
-  // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(formState);
@@ -33,7 +43,6 @@ const Login = (props) => {
       console.error(e);
     }
 
-    // clear form values
     setFormState({
       email: '',
       password: '',
@@ -41,19 +50,30 @@ const Login = (props) => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Login</h4>
-          <div className="card-body">
-            {data ? (
-              <p>
+    <Flex
+      minH={'100vh'}
+      align={'center'}
+      justify={'center'}
+      bg={useColorModeValue('gray.50', 'gray.800')}>
+      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+        <Stack align={'center'}>
+          <Heading fontSize={'4xl'}>Sign in to your account</Heading>
+        </Stack>
+        <Box
+          rounded={'lg'}
+          bg={useColorModeValue('white', 'gray.700')}
+          boxShadow={'lg'}
+          p={8}>
+          <Stack spacing={4}>
+          {data ? (
+              <Text>
                 Success! You may now head{' '}
                 <Link to="/">back to the homepage.</Link>
-              </p>
+              </Text>
             ) : (
               <form onSubmit={handleFormSubmit}>
-                <input
+                <Input
+                  size='lg'
                   className="form-input"
                   placeholder="Your email"
                   name="email"
@@ -61,21 +81,28 @@ const Login = (props) => {
                   value={formState.email}
                   onChange={handleChange}
                 />
-                <input
+                <Input
+                  size='lg'
+                  mt={[15]}
                   className="form-input"
-                  placeholder="******"
+                  placeholder="password"
                   name="password"
                   type="password"
                   value={formState.password}
                   onChange={handleChange}
                 />
-                <button
-                  className="btn btn-block btn-primary"
-                  style={{ cursor: 'pointer' }}
-                  type="submit"
-                >
-                  Submit
-                </button>
+               <Stack spacing={10}>
+                  <Button
+                    mt={[15]}
+                    type='submit'
+                    bg={'blue.400'}
+                    color={'white'}
+                    _hover={{
+                      bg: 'blue.500',
+                    }}>
+                    Sign in
+                  </Button>
+                </Stack>
               </form>
             )}
 
@@ -84,10 +111,10 @@ const Login = (props) => {
                 {error.message}
               </div>
             )}
-          </div>
-        </div>
-      </div>
-    </main>
+          </Stack>
+        </Box>
+      </Stack>
+    </Flex>
   );
 };
 
