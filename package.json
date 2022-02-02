@@ -26,5 +26,6 @@
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.1.1"
+    "stripe": "^8.201.0"
   }
 }
