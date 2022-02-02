@@ -120,4 +120,4 @@ import {
     );
   }
   
-  export default ProductAddToCart;
+  export default { ProductAddToCart, Rating };
