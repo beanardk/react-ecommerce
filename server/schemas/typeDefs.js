@@ -27,6 +27,7 @@ const typeDefs = gql`
     }
 
     type Product {
+        _id: ID
         name: String
         description: String
         price: Float
@@ -36,6 +37,7 @@ const typeDefs = gql`
     }
 
     type Purchases {
+        _id: ID
         purchasedBy: Account
         purchasedProduct: Product
         purchasedAt: Date
@@ -53,7 +55,7 @@ const typeDefs = gql`
         getAllProducts: [Product]
         getPurchase(purchaseId: ID): Purchases
         getAllPurchases: [Purchases]
-        createCheckout: String
+        createCheckout(accountId: ID): String
     }
 
     type Mutation {
@@ -61,6 +63,8 @@ const typeDefs = gql`
         login(email: String!, password: String!): Auth
         createProduct(name: String!, description: String!, price: Float!): Product
         archiveProduct(productId: String): Product # Cannot delete products through api, only able to archive ( soft delete )
+        addToCart(accountId: String, productId: String): Account 
+        removeFromCart(accountId: String, productId: String, Amount: String): Account 
     }
 `
 

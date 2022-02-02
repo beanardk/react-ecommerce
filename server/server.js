@@ -19,7 +19,11 @@ const server = new ApolloServer({
 server.start().then(() => { server.applyMiddleware({ app }); })
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use((req, res, next) => {
+    if (req.originalUrl != "/webhook") return express.json()(req, res, next)
+
+    next();
+});
 
 // if we're in production, serve client/build as static assets
 if (process.env.NODE_ENV === 'production') {
