@@ -22,7 +22,7 @@ import {
     ChevronRightIcon,
   } from '@chakra-ui/icons';
   
-  export default function WithSubnavigation() {
+   function WithSubnavigation() {
     const { isOpen, onToggle } = useDisclosure();
   
     return (
@@ -62,7 +62,7 @@ import {
               <DesktopNav />
             </Flex>
           </Flex>
-  
+          {/* Signin */}
           <Stack
             flex={{ base: 1, md: 0 }}
             justify={'flex-end'}
@@ -73,16 +73,17 @@ import {
               fontSize={'sm'}
               fontWeight={400}
               variant={'link'}
-              href={'#'}>
+              href={'/login'}>
               Sign In
             </Button>
+            {/* Signup */}
             <Button
               display={{ base: 'none', md: 'inline-flex' }}
               fontSize={'sm'}
               fontWeight={600}
               color={'white'}
               bg={'pink.400'}
-              href={'#'}
+              href={'/signup'}
               _hover={{
                 bg: 'pink.300',
               }}>
@@ -145,7 +146,7 @@ import {
     );
   };
   
-  const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
+  const DesktopSubNav = ({ label, href, subLabel }) => {
     return (
       <Link
         href={href}
@@ -192,7 +193,7 @@ import {
     );
   };
   
-  const MobileNavItem = ({ label, children, href }: NavItem) => {
+  const MobileNavItem = ({ label, children, href }) => {
     const { isOpen, onToggle } = useDisclosure();
   
     return (
@@ -242,52 +243,32 @@ import {
     );
   };
   
-  interface NavItem {
-    label: string;
-    subLabel?: string;
-    children?: Array<NavItem>;
-    href?: string;
-  }
   
-  const NAV_ITEMS: Array<NavItem> = [
+  const NAV_ITEMS = [
     {
-      label: 'Inspiration',
-      children: [
-        {
-          label: 'Explore Design Work',
-          subLabel: 'Trending Design to inspire you',
-          href: '#',
-        },
-        {
-          label: 'New & Noteworthy',
-          subLabel: 'Up-and-coming Designers',
-          href: '#',
-        },
-      ],
+      label: 'Home',
+      href: '#'
     },
     {
-      label: 'Find Work',
-      children: [
-        {
-          label: 'Job Board',
-          subLabel: 'Find your dream design job',
-          href: '#',
-        },
-        {
-          label: 'Freelance Projects',
-          subLabel: 'An exclusive list for contract work',
-          href: '#',
-        },
-      ],
-    },
-    {
-      label: 'Learn Design',
+      label: 'Products',
       href: '#',
     },
     {
-      label: 'Hire Designers',
+      label: 'About',
       href: '#',
     },
+    {
+        label: 'Contact',
+        href: '#',
+      },
+      {
+        label: 'Signup',
+        href: '/signup',
+      },
   ];
 
-export default navbar;
+export default { DesktopNav, WithSubnavigation, MobileNav, MobileNavItem, DesktopSubNav };
+// export default MobileNav;
+// export default MobileNavItem;
+// export default DesktopSubNav;
+// export default WithSubnavigation;
