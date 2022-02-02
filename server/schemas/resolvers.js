@@ -39,11 +39,21 @@ const resolvers = {
             let account = await Account.findById(accountId).populate('cart')
             let cart = await formatCart(account.cart)
 
+            let stringedCart = JSON.stringify(account.cart.map((item) => { return item._id }))
+
+            console.log(stringedCart)
             const session = await stripe.checkout.sessions.create({
               mode: "payment",
               success_url: `${process.env.BASE_URL}success`,
               cancel_url: `${process.env.BASE_URL}cancel`,
-              line_items: cart
+              line_items: cart,
+              shipping_address_collection: {
+                allowed_countries: ['US', 'CA'],
+              },
+              metadata: {
+                accountId,
+                cart: stringedCart
+              }
             })
 
             return session.url

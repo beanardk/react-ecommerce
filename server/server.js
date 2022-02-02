@@ -18,12 +18,9 @@ const server = new ApolloServer({
 
 server.start().then(() => { server.applyMiddleware({ app }); })
 
+app.use('/webhook', express.raw({ type: "*/*" }));
 app.use(express.urlencoded({ extended: true }));
-app.use((req, res, next) => {
-    if (req.originalUrl != "/webhook") return express.json()(req, res, next)
-
-    next();
-});
+app.use(express.json());
 
 // if we're in production, serve client/build as static assets
 if (process.env.NODE_ENV === 'production') {
@@ -32,5 +29,6 @@ if (process.env.NODE_ENV === 'production') {
 
 db.once('open', () => {
     app.listen(PORT, () => console.log(`Now listening on localhost: ${PORT}`));
+    require('./util/stripeEvents')(app)
 });
 

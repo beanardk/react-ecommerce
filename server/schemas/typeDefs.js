@@ -36,11 +36,21 @@ const typeDefs = gql`
         purchases: [Purchases]
     }
 
+    type Shipping {
+        city: String
+        country: String
+        line1: String
+        line2: String
+        postal_code: String
+        state: String
+    }
+
     type Purchases {
         _id: ID
         purchasedBy: Account
         purchasedProduct: Product
         purchasedAt: Date
+        shipping: Shipping
     }
 
     type Auth {
