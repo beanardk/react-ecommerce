@@ -4,7 +4,7 @@ import {
     Button,
     Text,
     VStack,
-    useBreakpointValue,
+    // useBreakpointValue,
   } from '@chakra-ui/react';
   
   export default function hero() {
