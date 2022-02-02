@@ -7,7 +7,7 @@ import {
     Link,
     Heading
 } from '@chakra-ui/react'
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { FiShoppingCart } from 'react-icons/fi'; 
 function Navbar () {
     return (
     <Flex>
