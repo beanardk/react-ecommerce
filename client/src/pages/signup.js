@@ -6,11 +6,6 @@ import { ADD_ACCOUNT } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
-import { Container } from '@chakra-ui/react';
-// import { Input } from '@chakra-ui/react';
-// import { Button, ButtonGroup } from '@chakra-ui/react';
-// import { Text } from '@chakra-ui/react'
-
 import {
   Flex,
   Box,
