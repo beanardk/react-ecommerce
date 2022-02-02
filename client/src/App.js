@@ -9,8 +9,7 @@ import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Signup from './pages/signup';
 import Login from './pages/login';
-import Nav from './components/navbar';
-import Hero from './components/hero';
+import Home from './pages/homepage'
 import { Box } from '@chakra-ui/react'
 import { Container } from '@chakra-ui/react'
 
@@ -44,8 +43,7 @@ const httpLink = createHttpLink({
         <Router>
             <div>
               <Route exact path="/">
-                <Nav.DesktopNav/>
-                <Hero/>
+                <Home/>
               </Route>
             </div>
             <div>
