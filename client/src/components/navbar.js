@@ -1,11 +1,13 @@
 import { 
     Flex,
     Box,
+    Text,
     Spacer,
     Button,
+    Link,
     Heading
 } from '@chakra-ui/react'
-
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 function Navbar () {
     return (
     <Flex>
@@ -14,16 +16,15 @@ function Navbar () {
         </Box>
         <Spacer />
         <Box>
-            <Button colorScheme='gray' mr='4'>
+            <Link colorScheme='gray' mr='4' href='/login'>
                 Sign in
-            </Button>
+            </Link>
 
-            <Button colorScheme='green'>
+            <Link colorScheme='green' href='/signup'>
                 Sign Up
-            </Button>
+            </Link>
         </Box>
     </Flex>
     )
 }
-
 export default Navbar;
