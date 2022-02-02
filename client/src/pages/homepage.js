@@ -12,29 +12,45 @@ const Homepage = () => {
     return (
        <main>
            <div>
-               <></>
-               <Navbar/>
-               <Hero/>
-               <SimpleGrid minChildWidth='5px' spacing='10px'>
-                   <Box bg='white' height='80px'>
-                        <Product.ProductAddToCart/>
-                   </Box>
-                   <Box bg='white' height='80px'>
-                        <Product.ProductAddToCart/>
-                   </Box>
-                   <Box bg='white' height='80px'>
-                        <Product.ProductAddToCart/>
-                   </Box>
-                   <Box bg='white' height='80px'>
-                        <Product.ProductAddToCart/>
-                   </Box>
-                   <Box bg='white' height='80px'>
-                        <Product.ProductAddToCart/>
-                   </Box>
-                   <Box bg='white' height='80px'>
-                        <Product.ProductAddToCart/>
-                   </Box>
-               </SimpleGrid>
+               <Box>
+                   <Navbar/>
+               </Box>
+
+               <Spacer />
+
+               <Box>
+                   <Hero/>
+               </Box>
+
+               <Spacer />
+
+               <Box>
+                    <SimpleGrid minChildWidth='5px' spacing='10px'>
+                        <Box bg='white' height='80px'>
+                            <Product.ProductAddToCart/>
+                        </Box>
+
+                        <Box bg='white' height='80px'>
+                            <Product.ProductAddToCart/>
+                        </Box>
+
+                        <Box bg='white' height='80px'>
+                            <Product.ProductAddToCart/>
+                        </Box>
+
+                        <Box bg='white' height='80px'>
+                            <Product.ProductAddToCart/>
+                        </Box>
+
+                        <Box bg='white' height='80px'>
+                            <Product.ProductAddToCart/>
+                        </Box>
+
+                        <Box bg='white' height='80px'>
+                            <Product.ProductAddToCart/>
+                        </Box>
+                    </SimpleGrid>
+               </Box>
 
            </div>
        </main>
