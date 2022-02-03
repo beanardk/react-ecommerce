@@ -52,10 +52,6 @@ const httpLink = createHttpLink({
               <Route exact path="/signup">
                 <Signup />
               </Route>
-
-              <Route exact path="/cart">
-                <Cart />
-              </Route>
             </div>
         </Router>
       </ApolloProvider>

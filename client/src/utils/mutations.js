@@ -24,3 +24,10 @@ export const ADD_ACCOUNT = gql`
   }
 `;
 
+export const ADD_TO_CART = gql `
+mutation AddToCart($productId: String, $accountId: String) {
+  addToCart(productId: $productId, accountId: $accountId) {
+    email
+  }
+}
+`;
