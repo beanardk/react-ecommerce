@@ -9,22 +9,22 @@ import { useMutation } from '@apollo/client';
 
 const Homepage = () => {
     return (
+
        <main>
            <div>
                <Box>
                    <Header/>
                </Box>
+                <Spacer />
 
-               <Spacer />
-
-               <Box>
-                   <Hero/>
-               </Box>
-
-               <Spacer />
+                <Box>
+                    <Hero/>
+                </Box>
+                <Spacer />
 
                <Box>
                     <SimpleGrid minChildWidth='12px' spacing='10px'>
+
                         <Box bg='white' height='80px'>
                             <Product.ProductAddToCart/>
                         </Box>
@@ -41,11 +41,11 @@ const Homepage = () => {
                             <Product.ProductAddToCart/>
                         </Box>
                     </SimpleGrid>
-               </Box>
-
+                </Box>
            </div>
        </main>
     )
 };
+
 
  export default Homepage;                                                                                                                                                      
