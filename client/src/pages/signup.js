@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
 
 import { useMutation } from '@apollo/client';
 import { ADD_ACCOUNT } from '../utils/mutations';
@@ -98,7 +97,7 @@ console.log(data);
                     _hover={{
                       bg: 'blue.500',
                     }}>
-                    Sign in
+                    Sign Up
                   </Button>
                 </Stack>
               </form>
