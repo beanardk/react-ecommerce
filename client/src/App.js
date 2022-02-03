@@ -40,15 +40,14 @@ const httpLink = createHttpLink({
     return (
       <ApolloProvider client={client}>
         <Router>
-            <div>
               <Route exact path="/">
                 <Home/>
               </Route>
-            </div>
-            <div>
+
               <Route exact path="/login">
                 <Login />
               </Route>
+
               <Route exact path="/signup">
                 <Signup />
               </Route>
@@ -56,7 +55,7 @@ const httpLink = createHttpLink({
               <Route exact path="/cart">
                 <Cart />
               </Route>
-            </div>
+              
         </Router>
       </ApolloProvider>
     );

@@ -9,11 +9,11 @@ const resolvers = {
     Query: {
         /* Accounts */
         getAccount: async (parent, { accountId }) => {
-            return await Account.findById(accountId)
+            return await Account.findById(accountId).populate('purchases').populate('cart')
         },
 
         getAllAccounts: async () => {
-          return await Account.find({})
+          return await Account.find({}).populate('purchases').populate('cart')
         },
         
         /* Products */
@@ -69,7 +69,7 @@ const resolvers = {
         },
 
         login: async (parent, { email, password }) => {
-            const user = await Account.findOne({ email });
+            const user = await Account.findOne({ email })
       
             if (!user) {
               throw new AuthenticationError('No user found with this email address');
@@ -87,7 +87,7 @@ const resolvers = {
         },
 
         /* Stripe */
-        createProduct: async (parent, { name, description, price }) => {
+        createProduct: async (parent, { name, description, price, imageURL }) => {
           const stripeProduct = await stripe.products.create({
             name: name,
             description: description,
@@ -109,6 +109,7 @@ const resolvers = {
           let savedProduct = await Product.create({
             name,
             description,
+            imageURL,
             price,
             productId: stripeProduct.id,
             priceId: stripePrice.id

@@ -23,4 +23,3 @@ export const ADD_ACCOUNT = gql`
     }
   }
 `;
-
