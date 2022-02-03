@@ -13,7 +13,7 @@ import {
         w={'full'}
         h={'100vh'}
         backgroundImage={
-          'url(https://images.unsplash.com/photo-1600267175161-cfaa711b4a81?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80)'
+          'url(https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/streetwear-brands-1627934788.jpg)'
         }
         backgroundSize={'cover'}
         backgroundPosition={'center center'}>
@@ -22,7 +22,7 @@ import {
           justify={'center'}
           // px={useBreakpointValue({ base: 4, md: 8 })}
           bgGradient={'linear(to-r, blackAlpha.600, transparent)'}>
-          <Stack maxW={'2xl'} align={'flex-start'} spacing={6}>
+          <Stack maxW={'2xl'} align={'flex-start'} spacing={5}>
             <Text
               color={'white'}
               fontWeight={700}
