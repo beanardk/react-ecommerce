@@ -10,8 +10,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Signup from './pages/signup';
 import Login from './pages/login';
 import Home from './pages/homepage'
-import { Box } from '@chakra-ui/react'
-import { Container } from '@chakra-ui/react'
+import Cart from './pages/cart'
 
 
 const httpLink = createHttpLink({
@@ -52,6 +51,10 @@ const httpLink = createHttpLink({
               </Route>
               <Route exact path="/signup">
                 <Signup />
+              </Route>
+
+              <Route exact path="/cart">
+                <Cart />
               </Route>
             </div>
         </Router>
