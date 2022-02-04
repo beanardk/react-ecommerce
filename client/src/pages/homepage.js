@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import {
 SimpleGrid,
 Box,
@@ -6,16 +6,30 @@ Flex,
 Spacer,
 Wrap,
 WrapItem,
-Center
+Center,
+Text,
+useColorModeValue
 } from '@chakra-ui/react'
-import Header from '../components/Nav2.0/header'
 import Hero from '../components/hero';
 import Product from '../components/product-card'
 import Footer from '../components/footer';
 import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
+import { useQuery } from '@apollo/client';
+import { GET_ALL_PRODUCTS } from '../utils/queries';
+
 
 const Homepage = () => {
+    const {loading,data} = useQuery(GET_ALL_PRODUCTS)
+    const [product, setProducts] = useState([])
+    useEffect(() => {
+        console.log("hi")
+        if (!loading && data) {
+            console.log("hello")
+            let newProducts = Object.values(data)[0]
+            newProducts = newProducts.slice(0,5)
+            setProducts(newProducts)
+        }
+    },[data])
     return (
         <main>
             <div>
@@ -34,36 +48,25 @@ const Homepage = () => {
                     justify={'center'}
                     spacing='300px'
                     align={'center'}>
-
-                        <WrapItem>
-                            <Center mb='250px' bg='white' w='80px' h='80px'>
-                                <Product.ProductAddToCart/>
-                            </Center>
-                        </WrapItem>
-
-                        <WrapItem>
-                            <Center mb='250px' bg='white' w='80px' h='80px'>
-                                <Product.ProductAddToCart/>
-                            </Center>
-                        </WrapItem>
-
-                        <WrapItem>
-                            <Center mb='250px' bg='white' w='80px' h='80px'>
-                                <Product.ProductAddToCart/>
-                            </Center>
-                        </WrapItem>
-
-                        <WrapItem>
-                            <Center mb='250px' spacing='20px' bg='white' w='80px' h='80px'>
-                                <Product.ProductAddToCart/>
-                            </Center>
-                        </WrapItem>
-
-                        <WrapItem>
-                            <Center mb='250px' spacing='20px' bg='white' w='80px' h='80px'>
-                                <Product.ProductAddToCart/>
-                            </Center>
-                        </WrapItem>
+                        {console.log("product",product)}
+                        {(product && product.length > 0) ?
+                        product.map((item) => {
+                            <WrapItem>
+                                <Center mb='250px' bg='white' w='80px' h='80px'>
+                                    <Product
+                                        key = {item.id}
+                                        imageURL = {item.imageURL}
+                                        price = {item.price}
+                                        name = {item.name}
+                                    />
+                                </Center>
+                            </WrapItem>
+                        })
+                        :
+                        <Text fontSize="sm">
+                            Loading...
+                        </Text>
+                        }
 
                     </Wrap>
 
