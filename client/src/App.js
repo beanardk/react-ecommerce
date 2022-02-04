@@ -57,7 +57,11 @@ const httpLink = createHttpLink({
               <Route exact path="/signup">
                 <Signup />
               </Route>
-            
+
+              <Route exact path="/cart">
+                <Cart />
+              </Route>
+
               <Route exact path="/products">
                 <Product
                   _id="120A"
