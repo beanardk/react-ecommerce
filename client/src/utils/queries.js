@@ -16,3 +16,9 @@ export const GET_ACCOUNT = gql`
         }
     }
 `
+
+export const CREATE_CHECKOUT = gql`
+    query createCheckout($accountId: ID) {
+        createCheckout(accountId: $accountId)
+    }
+`

@@ -28,7 +28,6 @@ const Cart = () => {
 
     useEffect(() => {
         if(!loading && data) {
-
             let cart = Object.values(data)[0].cart
             if(!cart || cart.length < 1) return
 
@@ -38,6 +37,16 @@ const Cart = () => {
             setTotal(newCart.map(item => item.price).reduce((prev, next) => prev + next))
         }
     }, [data])
+
+    const handleCartChange = async (cart) => {
+        const newCart = await handleCart(cart)
+        setCart(newCart)
+        setTotal(newCart.map(item => item.price).reduce((prev, next) => prev + next))
+    }
+
+    const handleTotalChange = async (cart) => {
+        setTotal(cart.map(item => item.price).reduce((prev, next) => prev + next))
+    }
 
     return (
     <Box
@@ -56,14 +65,22 @@ const Cart = () => {
                 <Heading fontSize="2xl" fontWeight="extrabold">
                     Shopping Cart ({currentCart.length || 0} items)
                 </Heading>
-                {(currentCart && currentCart.length > 0) ? currentCart.map((item) => ( <CartItem key={item.id} {...item} />)) : 
+
+                {(currentCart && currentCart.length > 0) ? currentCart.map((item) => ( 
+                    <CartItem 
+                    key={item.id} 
+                    {...item} 
+                    handleCartChange={handleCartChange}
+                    handleTotalChange={handleTotalChange}
+                    />)) : 
                 <Text color={mode('gray.600', 'gray.400')} fontSize="sm">
                     Your cart is currently empty.
                 </Text>}
+
             </Stack>
 
             <Flex direction="column" align="center" flex="1">
-                <CartOrderSummary amount={total}/>
+                <CartOrderSummary accountId={accountId} amount={total}/>
                 <HStack mt="6" fontWeight="semibold">
                     <Link href="/" color={mode('blue.500', 'blue.200')}>Continue Shopping</Link>
                 </HStack>

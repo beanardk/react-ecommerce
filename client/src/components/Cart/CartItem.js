@@ -1,5 +1,5 @@
 import { CloseButton, Flex, Link, Select, useColorModeValue } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { PriceTag } from './PriceTag'
 import { CartProductMeta } from './CartProductMeta'
 import { useMutation } from '@apollo/client'
@@ -33,22 +33,37 @@ export const CartItem = ({
     quantity,
     imageUrl,
     price,
-    onChangeQuantity
+    handleCartChange,
+    handleTotalChange
   }) => {
 
     let accountId = Auth.getAccount().data._id
-    const [removeFromCart, { loading, data }] = useMutation(REMOVE_ALL_FROM_CART);
+    const [removeFromCart, { loading, data }] = useMutation(REMOVE_ALL_FROM_CART, {
+      variables: { accountId, productId: id}
+    });
+    
     const [changeQuantity, { loading2, data2 }] = useMutation(CHANGE_QUANTITY);
-
     const [currentQuantity, setQuantity] = useState(1);
 
     const handleQuantityChange = (e) => {
-      setQuantity(e.currentTarget.value)
+      setQuantity(parseInt(e.currentTarget.value))
       changeQuantity({
-          variables: { accountId, productId: id, quantity: e.currentTarget.value},
+          variables: { accountId, productId: id, quantity: parseInt(e.currentTarget.value) },
       });
     }
 
+    useEffect(() => {
+      if(!loading2 && data2) {
+        handleTotalChange(Object.values(data)[0].cart)
+      }
+    })
+    
+    useEffect(() => {
+      if(!loading && data) {
+        handleCartChange(Object.values(data)[0].cart)
+      }
+    }, [data])
+    
   return (
     <Flex direction={{ base: 'column', md: 'row' }} justify="space-between" align="center">
       <CartProductMeta
@@ -86,6 +101,7 @@ export const CartItem = ({
         <Link fontSize="sm" textDecor="underline">
           Delete
         </Link>
+
         <Select
           maxW="64px"
           aria-label="Select quantity"
