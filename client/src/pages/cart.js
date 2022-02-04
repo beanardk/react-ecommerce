@@ -35,7 +35,7 @@ const Cart = () => {
             let newCart = handleCart(cart)
 
             setCart(newCart)
-            setTotal(newCart.map(item => item.price).reduce((prev, next) => prev + next))
+            setTotal(cart.map(item => item.price).reduce((prev, next) => prev + next))
         }
     }, [data])
 

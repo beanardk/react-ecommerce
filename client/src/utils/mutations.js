@@ -55,6 +55,13 @@ export const CHANGE_QUANTITY = gql`
     changeQuantity(accountId: $accountId, productId: $productId, quantity: $quantity) {
       _id
       email
+      cart {
+        _id
+        name
+        description
+        imageURL
+        price
+      }
     }
   }
 `

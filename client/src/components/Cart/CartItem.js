@@ -42,7 +42,7 @@ export const CartItem = ({
       variables: { accountId, productId: id}
     });
     
-    const [changeQuantity, { loading2, data2 }] = useMutation(CHANGE_QUANTITY);
+    const [changeQuantity, {}] = useMutation(CHANGE_QUANTITY);
     const [currentQuantity, setQuantity] = useState(1);
 
     const handleQuantityChange = (e) => {
@@ -50,13 +50,15 @@ export const CartItem = ({
       changeQuantity({
           variables: { accountId, productId: id, quantity: parseInt(e.currentTarget.value) },
       });
+
+      window.location.reload()
     }
 
-    useEffect(() => {
-      if(!loading2 && data2) {
-        handleTotalChange(Object.values(data)[0].cart)
-      }
-    })
+    // useEffect(() => {
+    //   if(!quantityData.loading && quantityData.data) {
+    //     handleTotalChange(Object.values(data)[0].cart)
+    //   }
+    // }, [quantityData.data])
     
     useEffect(() => {
       if(!loading && data) {
@@ -87,7 +89,7 @@ export const CartItem = ({
           <option value="4">4</option>
         </Select>
         <PriceTag price={price}/>
-        <CloseButton aria-label={`Delete ${name} from cart`} onClick={removeFromCart} />
+        <CloseButton aria-label={`Delete ${name} from cart`} onClick={() => removeFromCart()} />
       </Flex>
 
       {/* Mobile */}
