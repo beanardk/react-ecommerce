@@ -14,7 +14,7 @@ import { CartItem } from '../components/Cart/CartItem'
 import { CartOrderSummary } from '../components/Cart/CartOrderSummary'
 import Auth from '../utils/auth'
 import { GET_ACCOUNT } from '../utils/queries'
-import handleCart from '../utils/handleCart'
+import { handleCart } from '../utils/handleCart'
 
 const Cart = () => {
     let accountId = Auth.getAccount().data._id
