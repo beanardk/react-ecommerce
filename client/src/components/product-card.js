@@ -24,8 +24,6 @@ import {
   
   
   function ProductAddToCart() {
-    // const accountID = Auth.getAccount().data._id
-    // const [addToCart, { error, data }] = useMutation(ADD_TO_CART);
 
     return (
       <Flex p={50} w="full" alignItems="center" justifyContent="center">
