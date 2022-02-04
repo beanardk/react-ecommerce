@@ -11,7 +11,7 @@ import Signup from './pages/signup';
 import Login from './pages/login';
 import Home from './pages/homepage'
 import Cart from './pages/cart'
-import Product from './pages/products';
+import FillProduct from './pages/products';
 import Header from './components/Nav2.0/header';
 
 
@@ -54,9 +54,9 @@ const httpLink = createHttpLink({
               <Route exact path="/signup">
                 <Signup />
               </Route>
-          
+
               <Route exact path="/products">
-                <Product/>
+                <FillProduct/>
               </Route>
 
               <Route exact path="/cart">

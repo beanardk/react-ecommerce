@@ -2,8 +2,8 @@ import React from "react";
 import { Link, Box, Flex, Text, Button, Stack, Icon } from "@chakra-ui/react";
 import { FiShoppingCart } from 'react-icons/fi';
 import Logo from "../logo";
-
 import Auth from '../../utils/auth'
+
 const NavBar = (props) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const loggedIn = Auth.loggedIn()
@@ -62,6 +62,10 @@ const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
 };
 
 const MenuLinks = ({ isOpen }) => {
+  const logout =(event) => {
+    event.preventDefault();
+    Auth.logout();
+  }
   return (
     <Box
       display={{ base: isOpen ? "block" : "none", md: "block" }}
@@ -92,19 +96,29 @@ const MenuLinks = ({ isOpen }) => {
             Create Account
           </Button>
         </MenuItem>
-        <MenuItem to="/login">
+      <div>
+        {Auth.loggedIn() ? (
+          <Button onClick={logout}>
+            Logout
+          </Button>
+        ) : (
+
+          <MenuItem to="/login">
             <Button
                 size="sm"
                 rounded="md"
                 color={["green", "green", "white", "white"]}
                 bg={["white", "white", "green", "green"]}
                 _hover={{
-                bg: ["gray", "gray", "blue", "blue"]
+                  bg: ["gray", "gray", "blue", "blue"]
                 }}
-            >
+                >
                 Login
             </Button>
         </MenuItem>
+        
+        )}
+      </div>
       </Stack>
     </Box>
   );

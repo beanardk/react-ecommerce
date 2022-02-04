@@ -145,7 +145,7 @@ const resolvers = {
           await Account.findOneAndUpdate({ _id: accountId }, { $pull: { cart: productId }})
 
           let products = []
-          for (let i = 0; i < quantity.length; i++) { products.push(productId) }
+          for (let i = 0; i < quantity; i++) { products.push(productId) }
 
           return await Account.findOneAndUpdate({ _id: accountId }, { $push: { cart: { $each: products } }}).populate('purchases').populate('cart')
         }

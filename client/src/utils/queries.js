@@ -16,16 +16,23 @@ export const GET_ACCOUNT = gql`
         }
     }
 `
-export const GET_ALL_PRODUCTS = gql`
-query GetAllProducts {
-    getAllProducts {
-        _id
-        name
-        description
-        imageURL
-        price
-        productId
-        priceId
+
+export const CREATE_CHECKOUT = gql`
+    query createCheckout($accountId: ID) {
+      createCheckout(accountId: $accountId)
     }
-}
-`
+  `
+ 
+export const GET_ALL_PRODUCTS = gql`
+    query GetAllProducts {
+        getAllProducts {
+            _id
+            name
+            description
+            imageURL
+            price
+            productId
+            priceId
+        }
+    }
+  `

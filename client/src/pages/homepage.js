@@ -17,7 +17,6 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GET_ALL_PRODUCTS } from '../utils/queries';
 
-
 const Homepage = () => {
     const {loading,data} = useQuery(GET_ALL_PRODUCTS)
     const [product, setProducts] = useState([])
@@ -29,7 +28,7 @@ const Homepage = () => {
 
             setProducts(newProducts)
         }
-    },[data])
+    }, [data])
 
     return (
         <main>
