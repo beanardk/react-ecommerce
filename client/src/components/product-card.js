@@ -30,11 +30,18 @@ import {
     let history = useHistory()
     const [addToCart, {loading, data}] = useMutation(ADD_TO_CART)
     
-    const handleAdd = () => {
+    const handleAdd = async() => {
+      console.log("click")
       if(Auth.loggedIn() !== true) {
         return history.push("/login");
       }
-      addToCart({ variables:{ accountId: Auth.getAccount().props.id, productId:props.productId} })
+      console.log(props)
+      try {
+        const {data} = await addToCart({ variables:{ accountId: Auth.getAccount().data._id, productId:props._id} })
+        console.log(data)
+      } catch (e){
+        console.error(e)
+      }
     }
 
     return (
@@ -48,12 +55,17 @@ import {
           position="relative">
   
           <Image
+            height='auto'
+            minH={'325px'}
+            maxH={'325px'}
+            width='auto'
+            minW={'325px'}
             src={props.imageURL}
             alt={`Picture of ${props.name}`}
             roundedTop="lg"
             />
   
-          <Box p="6">
+          <Box p="5">
             <Flex mt="1" justifyContent="space-between" alignContent="center">
               <Link
                 to='/product-details'
@@ -70,7 +82,7 @@ import {
                 placement={'top'}
                 color={'gray.800'}
                 fontSize={'1.2em'}>
-                <chakra.a href={'#'} display={'flex'} onClick={handleAdd}>
+                <chakra.a  display={'flex'} onClick={() => handleAdd()}>
                   <Icon as={FiShoppingCart} h={7} w={7} alignSelf={'center'} />
                 </chakra.a>
               </Tooltip>

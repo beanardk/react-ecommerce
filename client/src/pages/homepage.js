@@ -53,7 +53,7 @@ const Homepage = () => {
                         {(product && product.length > 0) ?
                         product.map((item) => (
                             <WrapItem>
-                                <Center mb='250px' bg='white' w='80px' h='80px'>
+                                <Center mx='0px' mb='250px' bg='white' w='80px' h='80px'>
                                     <Product key = {item.id} {...item} />
                                 </Center>
                             </WrapItem>
