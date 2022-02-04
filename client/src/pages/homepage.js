@@ -68,13 +68,11 @@ const Homepage = () => {
                             </Center>
                         </WrapItem>
 
-                        <WrapItem>
-                            <Center mb='250px' spacing='20px' bg='white' w='80px' h='80px'>
-                                <Product.ProductAddToCart/>
-                            </Center>
-                        </WrapItem>
-
                     </Wrap>
+
+                    <Box mt='250px'>
+                        <Footer/>
+                    </Box>
                 </Box>
             </div>
         </main>
