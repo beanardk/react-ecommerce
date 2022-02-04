@@ -11,8 +11,8 @@ import Signup from './pages/signup';
 import Login from './pages/login';
 import Home from './pages/homepage'
 import Cart from './pages/cart'
-import Product from './pages/products';
-import Header from './components/header';
+import FillProduct from './pages/products';
+import Header from './components/Nav2.0/header';
 
 
 const httpLink = createHttpLink({
@@ -42,10 +42,7 @@ const httpLink = createHttpLink({
     return (
       <ApolloProvider client={client}>
         <Router>
-          <div>
-            <Header />
-            <div>
-
+              <Header/>
               <Route exact path="/">
                 <Home/>
               </Route>
@@ -58,27 +55,13 @@ const httpLink = createHttpLink({
                 <Signup />
               </Route>
 
-              <Route exact path="/cart">
-                <Cart />
-              </Route>
-
               <Route exact path="/products">
-                <Product
-                  _id="120A"
-                  description="Such a warm tshirt!"
-                  price={5.99}
-                  image="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80" 
-                  />
-                <Product
-                  _id="120A"
-                  description="Such a warm tshirt!"
-                  price={5.99}
-                  image="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80" 
-                  />
+                <FillProduct/>
               </Route>
 
-            </div>
-          </div>
+              <Route exact path="/cart">
+                <Cart/>
+              </Route>
 
         </Router>
       </ApolloProvider>

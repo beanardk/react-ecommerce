@@ -44,7 +44,7 @@ import {
         bg={useColorModeValue('gray.50', 'gray.900')}
         color={useColorModeValue('gray.700', 'gray.200')}>
         <Container as={Stack} maxW={'6xl'} py={10}>
-          <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
+          <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={20}>
             <Stack align={'flex-start'}>
               <ListHeader>Product</ListHeader>
               <Link href={'#'}>Overview</Link>
@@ -108,7 +108,7 @@ import {
             <Logo />
           </Flex>
           <Text pt={6} fontSize={'sm'} textAlign={'center'}>
-            © 2020 Chakra Templates. All rights reserved
+            © 2022 Reeeee. All rights reserved
           </Text>
         </Box>
       </Box>
