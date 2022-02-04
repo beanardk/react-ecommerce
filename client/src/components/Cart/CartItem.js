@@ -1,7 +1,10 @@
-import { CloseButton, Flex, Link, Select, SelectProps, useColorModeValue } from '@chakra-ui/react'
-import * as React from 'react'
+import { CloseButton, Flex, Link, Select, useColorModeValue } from '@chakra-ui/react'
 import { PriceTag } from './PriceTag'
 import { CartProductMeta } from './CartProductMeta'
+import { useMutation } from '@apollo/client'
+import { REMOVE_ALL_FROM_CART } from '../../utils/mutations'
+import { handleCart } from '../../utils/handleCart'
+import Auth from '../../utils/auth'
 
 // const CartItemProps = {
 //   isGiftWrapping?: boolean,
@@ -39,18 +42,29 @@ const QuantitySelect = (props) => {
   )
 }
 
-export const CartItem = (props) => {
-  const {
-    isGiftWrapping,
+export const CartItem = ({
+    id,
     name,
     description,
     quantity,
     imageUrl,
-    currency,
     price,
-    onChangeQuantity,
-    onClickDelete,
-  } = props
+    onChangeQuantity
+  }) => {
+
+  let accountId = Auth.getAccount().data._id
+  const [removeFromCart, { loading, data }] = useMutation(REMOVE_ALL_FROM_CART, {
+        variables: { accountId, productId: id },
+    });
+
+    // useEffect(() => {
+    //     if(!loading && data) {
+    //         const cart = Object.values(data)[0].cart
+
+    //         let newCart = handleCart(cart)
+    //         props.handleCartChange(newCart, newCart.map(item => item.price).reduce((prev, next) => prev + next))
+    //     }
+    // }, [data])
 
   return (
     <Flex direction={{ base: 'column', md: 'row' }} justify="space-between" align="center">
@@ -58,7 +72,6 @@ export const CartItem = (props) => {
         name={name}
         description={description}
         image={imageUrl}
-        isGiftWrapping={isGiftWrapping}
       />
 
       {/* Desktop */}
@@ -69,8 +82,8 @@ export const CartItem = (props) => {
             onChangeQuantity?.(+e.currentTarget.value)
           }}
         />
-        <PriceTag price={price} currency={currency} />
-        <CloseButton aria-label={`Delete ${name} from cart`} onClick={onClickDelete} />
+        <PriceTag price={price}/>
+        <CloseButton aria-label={`Delete ${name} from cart`} onClick={removeFromCart} />
       </Flex>
 
       {/* Mobile */}
@@ -90,7 +103,7 @@ export const CartItem = (props) => {
             onChangeQuantity?.(+e.currentTarget.value)
           }}
         />
-        <PriceTag price={price} currency={currency} />
+        <PriceTag price={price} />
       </Flex>
     </Flex>
   )

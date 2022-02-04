@@ -40,8 +40,6 @@ const resolvers = {
             let cart = await formatCart(account.cart)
 
             let stringedCart = JSON.stringify(account.cart.map((item) => { return item._id }))
-
-            console.log(stringedCart)
             const session = await stripe.checkout.sessions.create({
               mode: "payment",
               success_url: `${process.env.BASE_URL}success`,
@@ -132,9 +130,22 @@ const resolvers = {
 
         removeFromCart: async (parent, { accountId, productId }) => {
           let account = await Account.findById(accountId)
-          account.cart = account.cart.filter((i => v => v !== 2 || --i)(1));
+          account.cart = account.cart.filter((i => v => v !== productId || --i)(1));
 
           return await account.save()
+        },
+
+        removeProductFromCart: async (parent, { accountId, productId }) => {
+          return await Account.findOneAndUpdate({ _id: accountId }, { $pull: { cart: productId }}).populate('purchases').populate('cart')
+        },
+
+        changeQuantity: async (parent, { accountId, productId, quantity }) => {
+          await Account.findOneAndUpdate({ _id: accountId }, { $pull: { cart: productId }})
+
+          let products = []
+          for (let i = 0; i < quantity.length; i++) { products.push(productId) }
+
+          return await Account.findOneAndUpdate({ _id: accountId }, { $push: { cart: { $each: products } }}).populate('purchases').populate('cart')
         }
     }
 }

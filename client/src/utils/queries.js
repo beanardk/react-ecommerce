@@ -8,6 +8,7 @@ export const GET_ACCOUNT = gql`
             _id
             cart {
                 _id
+                description
                 name
                 imageURL
                 price

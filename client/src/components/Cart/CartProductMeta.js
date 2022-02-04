@@ -17,8 +17,7 @@ import * as React from 'react'
 //   image: string
 // }
 
-export const CartProductMeta = (props) => {
-  const { isGiftWrapping = true, image, name, description } = props
+export const CartProductMeta = ({ image, name, description }) => {
   return (
     <Stack direction="row" spacing="5" width="full">
       <Image
@@ -31,9 +30,13 @@ export const CartProductMeta = (props) => {
         draggable="false"
         loading="lazy"
       />
+      
       <Box pt="4">
         <Stack spacing="0.5">
           <Text fontWeight="medium">{name}</Text>
+          <Text color={mode('gray.600', 'gray.400')} fontSize="sm">
+            {description}
+          </Text>
         </Stack>
       </Box>
     </Stack>

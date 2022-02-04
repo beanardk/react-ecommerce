@@ -75,7 +75,9 @@ const typeDefs = gql`
         createProduct(name: String!, description: String!, price: Float!, imageURL: String): Product
         archiveProduct(productId: String): Product # Cannot delete products through api, only able to archive ( soft delete )
         addToCart(accountId: String, productId: String): Account 
-        removeFromCart(accountId: String, productId: String, Amount: String): Account 
+        removeFromCart(accountId: String, productId: String): Account
+        removeProductFromCart(accountId: String, productId: String): Account # Removes entire product ( if they had multiple and want the all of them gone )
+        changeQuantity(accountId: String, productId: String, quantity: Int): Account
     }
 `
 
