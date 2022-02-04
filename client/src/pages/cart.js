@@ -18,6 +18,7 @@ import { handleCart } from '../utils/handleCart'
 
 const Cart = () => {
     let accountId = Auth.getAccount().data._id
+    
     const { loading, data } = useQuery(GET_ACCOUNT, {
         variables: { accountId },
     });
