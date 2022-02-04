@@ -3,9 +3,10 @@ import { Link, Box, Flex, Text, Button, Stack, Icon } from "@chakra-ui/react";
 import { FiShoppingCart } from 'react-icons/fi';
 import Logo from "../logo";
 
+import Auth from '../../utils/auth'
 const NavBar = (props) => {
   const [isOpen, setIsOpen] = React.useState(false);
-
+  const loggedIn = Auth.loggedIn()
   const toggle = () => setIsOpen(!isOpen);
 
   return (

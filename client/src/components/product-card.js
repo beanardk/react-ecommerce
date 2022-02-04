@@ -8,22 +8,34 @@ import {
     Icon,
     chakra,
     Tooltip,
-    Link
+    Link,
+    Button
   } from '@chakra-ui/react';
   import { BsStar, BsStarFill, BsStarHalf } from 'react-icons/bs';
   import { FiShoppingCart } from 'react-icons/fi';
-  // import Auth from '../utils/auth'
-  // import { ADD_TO_CART } from '../utils/mutations';
-  const data = {
-    isNew: true,
-    imageURL:
-      'https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=4600&q=80',
-    name: 'Wayfarer Classic',
-    price: 4.5
-  };
+  import Auth from '../utils/auth'
+  import { useMutation } from '@apollo/client';
+  import { ADD_TO_CART } from '../utils/mutations';
+  import { useHistory  } from 'react-router-dom';
+  // const data = {
+  //   isNew: true,
+  //   imageURL:
+  //     'https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=4600&q=80',
+  //   name: 'Wayfarer Classic',
+  //   price: 4.5
+  // };
   
   
-  function ProductAddToCart() {
+  const ProductAddToCart = (props) => {
+    let history = useHistory()
+    const [addToCart, {loading, data}] = useMutation(ADD_TO_CART)
+    
+    const handleAdd = () => {
+      if(Auth.loggedIn() !== true) {
+        return history.push("/login");
+      }
+      addToCart({ variables:{ accountId: Auth.getAccount().props.id, productId:props.productId} })
+    }
 
     return (
       <Flex p={50} w="full" alignItems="center" justifyContent="center">
@@ -34,30 +46,14 @@ import {
           rounded="lg"
           shadow="lg"
           position="relative">
-          {data.isNew && (
-            <Circle
-            size="10px"
-            position="absolute"
-            top={2}
-            right={2}
-            bg="red.200"
-            />
-            )}
   
           <Image
-            src={data.imageURL}
-            alt={`Picture of ${data.name}`}
+            src={props.imageURL}
+            alt={`Picture of ${props.name}`}
             roundedTop="lg"
             />
   
           <Box p="6">
-            <Box d="flex" alignItems="baseline">
-              {data.isNew && (
-                <Badge rounded="full" px="2" fontSize="0.8em" colorScheme="red">
-                  New
-                </Badge>
-              )}
-            </Box>
             <Flex mt="1" justifyContent="space-between" alignContent="center">
               <Link
                 to='/product-details'
@@ -66,7 +62,7 @@ import {
                 as="h4"
                 lineHeight="tight"
                 isTruncated>
-                {data.name}
+                {props.name}
               </Link>
               <Tooltip
                 label="Add to cart"
@@ -74,7 +70,7 @@ import {
                 placement={'top'}
                 color={'gray.800'}
                 fontSize={'1.2em'}>
-                <chakra.a href={'/cart'} display={'flex'}>
+                <chakra.a href={'#'} display={'flex'} onClick={handleAdd}>
                   <Icon as={FiShoppingCart} h={7} w={7} alignSelf={'center'} />
                 </chakra.a>
               </Tooltip>
@@ -85,7 +81,7 @@ import {
                 <Box as="span" color={'gray.600'} fontSize="lg">
                   £
                 </Box>
-                {data.price.toFixed(2)}
+                {props.price.toFixed(2)}
               </Box>
             </Flex>
           </Box>
@@ -121,4 +117,4 @@ import {
   //     </Box>
   //   );
   // }
-  export default {ProductAddToCart};
+  export default ProductAddToCart;
