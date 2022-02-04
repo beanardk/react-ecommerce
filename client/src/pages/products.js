@@ -1,73 +1,72 @@
-import React from "react";
-// import Auth from '../utils/auth';
-// import
-
+import React, { useState,useEffect } from 'react';
 import {
-    Flex,
-    Box,
-    Image,
-    useColorModeValue,
-    Icon,
-    chakra,
-    Tooltip,
-} from '@chakra-ui/react';
-import { FiShoppingCart } from 'react-icons/fi';
+SimpleGrid,
+Box,
+Flex,
+Spacer,
+Wrap,
+WrapItem,
+Center,
+Text,
+useColorModeValue
+} from '@chakra-ui/react'
+import Hero from '../components/hero';
+import Product from '../components/product-card'
+import Footer from '../components/footer';
+import { Link } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { GET_ALL_PRODUCTS } from '../utils/queries';
 
 
 
-const Product = ({_id, description, price, image}) => {
+const FillProduct = () => {
+
+  const {loading,data} = useQuery(GET_ALL_PRODUCTS)
+  const [product, setProducts] = useState([])
+
+  useEffect(() => {
+    if (!loading && data) {
+        let newProducts = Object.values(data)[0]
+        newProducts = newProducts.slice(0,5)
+
+        setProducts(newProducts)
+    }
+  },[data])
+
+
     return (
-        <Flex  display='flex'
-        flexWrap="wrap" p={50} w="full" alignItems="center" justifyContent="center">
-          <Box
-            bg={useColorModeValue('white', 'gray.800')}
-            maxW="sm"
-            borderWidth="1px"
-            rounded="lg"
-            shadow="lg"
-            position="relative">
-    
-            <Image
-              src={image}
-              alt={`Picture of ${_id}`}
-              roundedTop="lg"
-            />
-    
-            <Box p="6">
-              <Flex mt="1" justifyContent="space-between" alignContent="center">
+        <main>
+            <div>
+
                 <Box
-                  fontSize="2xl"
-                  fontWeight="semibold"
-                  as="h4"
-                  lineHeight="tight"
-                  isTruncated>
-                  {description}
+                mt='250px'>
+                    <Wrap
+                        w={'full'}
+                        alignItems={'center'}
+                        justify={'center'}
+                        spacing='300px'
+                        align={'center'}
+                    >
+                        {(product && product.length > 0) ?
+                        product.map((item) => (
+                            <WrapItem>
+                                <Center mb='250px' bg='white' w='80px' h='80px'>
+                                    <Product key = {item.id} {...item} />
+                                </Center>
+                            </WrapItem>
+                        ))
+                        :
+                        <Text fontSize="sm">
+                            Loading...
+                        </Text>
+                        }
+
+                    </Wrap>
                 </Box>
-                <Tooltip
-                  label="Add to cart"
-                  bg="white"
-                  placement={'top'}
-                  color={'gray.800'}
-                  fontSize={'1.2em'}>
-                  <chakra.a href={'#'} display={'flex'}>
-                    <Icon as={FiShoppingCart} h={7} w={7} alignSelf={'center'} />
-                  </chakra.a>
-                </Tooltip>
-              </Flex>
-    
-              <Flex justifyContent="space-between" alignContent="center">
-                <Box fontSize="2xl" color={useColorModeValue('gray.800', 'white')}>
-                  <Box as="span" color={'gray.600'} fontSize="lg">
-                    $
-                  </Box>
-                  {price.toFixed(2)}
-                </Box>
-              </Flex>
-            </Box>
-          </Box>
-        </Flex>
-      );
+            </div>
+        </main>
+    )
 }
 
 
-export default Product;
+export default FillProduct;
