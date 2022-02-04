@@ -16,6 +16,7 @@ import {
   import Auth from '../utils/auth'
   import { useMutation } from '@apollo/client';
   import { ADD_TO_CART } from '../utils/mutations';
+  import { useHistory  } from 'react-router-dom';
   // const data = {
   //   isNew: true,
   //   imageURL:
@@ -25,9 +26,17 @@ import {
   // };
   
   
-  function ProductAddToCart(props) {
-    const [addToCart, {loading,data}] = useMutation(ADD_TO_CART)
-    console.log("rwr")
+  const ProductAddToCart = (props) => {
+    let history = useHistory()
+    const [addToCart, {loading, data}] = useMutation(ADD_TO_CART)
+    
+    const handleAdd = () => {
+      if(Auth.loggedIn() !== true) {
+        return history.push("/login");
+      }
+      addToCart({ variables:{ accountId: Auth.getAccount().props.id, productId:props.productId} })
+    }
+
     return (
       <Flex p={50} w="full" alignItems="center" justifyContent="center">
         <Box
@@ -39,19 +48,12 @@ import {
           position="relative">
   
           <Image
-            src={data.imageURL}
-            alt={`Picture of ${data.name}`}
+            src={props.imageURL}
+            alt={`Picture of ${props.name}`}
             roundedTop="lg"
             />
   
           <Box p="6">
-            <Box d="flex" alignItems="baseline">
-              {data.isNew && (
-                <Badge rounded="full" px="2" fontSize="0.8em" colorScheme="red">
-                  New
-                </Badge>
-              )}
-            </Box>
             <Flex mt="1" justifyContent="space-between" alignContent="center">
               <Link
                 to='/product-details'
@@ -60,7 +62,7 @@ import {
                 as="h4"
                 lineHeight="tight"
                 isTruncated>
-                {data.name}
+                {props.name}
               </Link>
               <Tooltip
                 label="Add to cart"
@@ -68,9 +70,7 @@ import {
                 placement={'top'}
                 color={'gray.800'}
                 fontSize={'1.2em'}>
-                <chakra.a href={'#'} display={'flex'} onClick={addToCart({
-                  variables:{accountId:Auth.getAccount().data._id, productId:props.productId}
-                })}>
+                <chakra.a href={'#'} display={'flex'} onClick={handleAdd}>
                   <Icon as={FiShoppingCart} h={7} w={7} alignSelf={'center'} />
                 </chakra.a>
               </Tooltip>
@@ -81,7 +81,7 @@ import {
                 <Box as="span" color={'gray.600'} fontSize="lg">
                   £
                 </Box>
-                {data.price.toFixed(2)}
+                {props.price.toFixed(2)}
               </Box>
             </Flex>
           </Box>

@@ -21,15 +21,16 @@ import { GET_ALL_PRODUCTS } from '../utils/queries';
 const Homepage = () => {
     const {loading,data} = useQuery(GET_ALL_PRODUCTS)
     const [product, setProducts] = useState([])
+
     useEffect(() => {
-        console.log("hi")
         if (!loading && data) {
-            console.log("hello")
             let newProducts = Object.values(data)[0]
             newProducts = newProducts.slice(0,5)
+
             setProducts(newProducts)
         }
     },[data])
+
     return (
         <main>
             <div>
@@ -43,25 +44,20 @@ const Homepage = () => {
                 <Box
                 mt='250px'>
                     <Wrap
-                    w={'full'}
-                    alignItems={'center'}
-                    justify={'center'}
-                    spacing='300px'
-                    align={'center'}>
-                        {console.log("product",product)}
+                        w={'full'}
+                        alignItems={'center'}
+                        justify={'center'}
+                        spacing='300px'
+                        align={'center'}
+                    >
                         {(product && product.length > 0) ?
-                        product.map((item) => {
+                        product.map((item) => (
                             <WrapItem>
                                 <Center mb='250px' bg='white' w='80px' h='80px'>
-                                    <Product
-                                        key = {item.id}
-                                        imageURL = {item.imageURL}
-                                        price = {item.price}
-                                        name = {item.name}
-                                    />
+                                    <Product key = {item.id} {...item} />
                                 </Center>
                             </WrapItem>
-                        })
+                        ))
                         :
                         <Text fontSize="sm">
                             Loading...
