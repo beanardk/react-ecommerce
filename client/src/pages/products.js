@@ -27,7 +27,6 @@ const FillProduct = () => {
   useEffect(() => {
     if (!loading && data) {
         let newProducts = Object.values(data)[0]
-        newProducts = newProducts.slice(0,5)
 
         setProducts(newProducts)
     }

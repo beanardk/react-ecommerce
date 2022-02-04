@@ -31,14 +31,13 @@ import {
     const [addToCart, {loading, data}] = useMutation(ADD_TO_CART)
     
     const handleAdd = async() => {
-      console.log("click")
       if(Auth.loggedIn() !== true) {
         return history.push("/login");
       }
-      console.log(props)
+
       try {
         const {data} = await addToCart({ variables:{ accountId: Auth.getAccount().data._id, productId:props._id} })
-        console.log(data)
+        return history.push("/cart");
       } catch (e){
         console.error(e)
       }
