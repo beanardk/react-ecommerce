@@ -12,7 +12,7 @@ import Login from './pages/login';
 import Home from './pages/homepage'
 import Cart from './pages/cart'
 import Product from './pages/products';
-import Header from './components/header';
+import Header from './components/Nav2.0/header';
 
 
 const httpLink = createHttpLink({
@@ -42,8 +42,7 @@ const httpLink = createHttpLink({
     return (
       <ApolloProvider client={client}>
         <Router>
-          
-
+              <Header/>
               <Route exact path="/">
                 <Home/>
               </Route>
@@ -59,7 +58,10 @@ const httpLink = createHttpLink({
               <Route exact path="/products">
                 <Product/>
               </Route>
-      
+
+              <Route exact path="/cart">
+                <Cart/>
+              </Route>
 
         </Router>
       </ApolloProvider>

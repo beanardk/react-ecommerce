@@ -19,9 +19,6 @@ const Homepage = () => {
     return (
         <main>
             <div>
-                <Box>
-                    <Header/>
-                </Box>
                 <Spacer />
 
                 <Box>
@@ -70,7 +67,7 @@ const Homepage = () => {
 
                     </Wrap>
 
-                    <Box mt='250px'>
+                    <Box mt='100px'>
                         <Footer/>
                     </Box>
                 </Box>
