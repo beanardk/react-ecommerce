@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
-import {SimpleGrid, Box, Flex, Spacer, Wrap} from '@chakra-ui/react'
-import Header from '../components/header'
+import {
+SimpleGrid,
+Box,
+Flex,
+Spacer,
+Wrap,
+WrapItem,
+Center
+} from '@chakra-ui/react'
+import Header from '../components/Nav2.0/header'
 import Hero from '../components/hero';
 import Product from '../components/product-card'
 import Footer from '../components/footer';
@@ -18,30 +26,50 @@ const Homepage = () => {
                 </Box>
                 <Spacer />
 
-                <Box>
-                    <SimpleGrid minChildWidth='12px' spacing='10px'>
-
-                        <Box bg='white' height='80px'>
-                            <Product.ProductAddToCart/>
-                        </Box>
-
-                        <Box bg='white' height='80px'>
-                            <Product.ProductAddToCart/>
-                        </Box>
-
-                        <Box bg='white' height='80px'>
-                            <Product.ProductAddToCart/>
-                        </Box>
-
-                        <Box bg='white' height='80px'>
-                            <Product.ProductAddToCart/>
-                        </Box>
-
-                    </SimpleGrid>
-                </Box>
                 <Box
-                >
-                    <Footer/>
+                mt='250px'>
+                    <Wrap
+                    w={'full'}
+                    alignItems={'center'}
+                    justify={'center'}
+                    spacing='300px'
+                    align={'center'}>
+
+                        <WrapItem>
+                            <Center mb='250px' bg='white' w='80px' h='80px'>
+                                <Product.ProductAddToCart/>
+                            </Center>
+                        </WrapItem>
+
+                        <WrapItem>
+                            <Center mb='250px' bg='white' w='80px' h='80px'>
+                                <Product.ProductAddToCart/>
+                            </Center>
+                        </WrapItem>
+
+                        <WrapItem>
+                            <Center mb='250px' bg='white' w='80px' h='80px'>
+                                <Product.ProductAddToCart/>
+                            </Center>
+                        </WrapItem>
+
+                        <WrapItem>
+                            <Center mb='250px' spacing='20px' bg='white' w='80px' h='80px'>
+                                <Product.ProductAddToCart/>
+                            </Center>
+                        </WrapItem>
+
+                        <WrapItem>
+                            <Center mb='250px' spacing='20px' bg='white' w='80px' h='80px'>
+                                <Product.ProductAddToCart/>
+                            </Center>
+                        </WrapItem>
+
+                    </Wrap>
+
+                    <Box mt='100px'>
+                        <Footer/>
+                    </Box>
                 </Box>
             </div>
         </main>
