@@ -42,6 +42,10 @@ const Homepage = () => {
 
                     </SimpleGrid>
                 </Box>
+                <Box
+                >
+                    <Footer/>
+                </Box>
             </div>
         </main>
     )
