@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect("mongodb://localhost/mern-ecommerce",
+mongoose.connect(process.env.DATABASE_URI,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
