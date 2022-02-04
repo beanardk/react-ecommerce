@@ -1,3 +1,8 @@
+import React, { useState } from 'react';
+import {SimpleGrid, Box, Flex, Spacer, Wrap} from '@chakra-ui/react'
+import Hero from '../components/hero';
+import Product from '../components/product-card'
+import Footer from '../components/footer';
 import React, { useState,useEffect } from 'react';
 import {
 SimpleGrid,
@@ -17,7 +22,6 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GET_ALL_PRODUCTS } from '../utils/queries';
 
-
 const Homepage = () => {
     const {loading,data} = useQuery(GET_ALL_PRODUCTS)
     const [product, setProducts] = useState([])
@@ -29,7 +33,7 @@ const Homepage = () => {
 
             setProducts(newProducts)
         }
-    },[data])
+    }, [data])
 
     return (
         <main>

@@ -1,9 +1,9 @@
 import { CloseButton, Flex, Link, Select, useColorModeValue } from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
 import { PriceTag } from './PriceTag'
 import { CartProductMeta } from './CartProductMeta'
 import { useMutation } from '@apollo/client'
-import { REMOVE_ALL_FROM_CART } from '../../utils/mutations'
-import { handleCart } from '../../utils/handleCart'
+import { REMOVE_ALL_FROM_CART, CHANGE_QUANTITY } from '../../utils/mutations'
 import Auth from '../../utils/auth'
 
 // const CartItemProps = {
@@ -26,22 +26,6 @@ import Auth from '../../utils/auth'
 //   }
 // }
 
-const QuantitySelect = (props) => {
-  return (
-    <Select
-      maxW="64px"
-      aria-label="Select quantity"
-      focusBorderColor={useColorModeValue('blue.500', 'blue.200')}
-      {...props}
-    >
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-    </Select>
-  )
-}
-
 export const CartItem = ({
     id,
     name,
@@ -49,23 +33,37 @@ export const CartItem = ({
     quantity,
     imageUrl,
     price,
-    onChangeQuantity
+    handleCartChange,
+    handleTotalChange
   }) => {
 
-  let accountId = Auth.getAccount().data._id
-  const [removeFromCart, { loading, data }] = useMutation(REMOVE_ALL_FROM_CART, {
-        variables: { accountId, productId: id },
+    let accountId = Auth.getAccount().data._id
+    const [removeFromCart, { loading, data }] = useMutation(REMOVE_ALL_FROM_CART, {
+      variables: { accountId, productId: id}
     });
+    
+    const [changeQuantity, { loading2, data2 }] = useMutation(CHANGE_QUANTITY);
+    const [currentQuantity, setQuantity] = useState(1);
 
-    // useEffect(() => {
-    //     if(!loading && data) {
-    //         const cart = Object.values(data)[0].cart
+    const handleQuantityChange = (e) => {
+      setQuantity(parseInt(e.currentTarget.value))
+      changeQuantity({
+          variables: { accountId, productId: id, quantity: parseInt(e.currentTarget.value) },
+      });
+    }
 
-    //         let newCart = handleCart(cart)
-    //         props.handleCartChange(newCart, newCart.map(item => item.price).reduce((prev, next) => prev + next))
-    //     }
-    // }, [data])
-
+    useEffect(() => {
+      if(!loading2 && data2) {
+        handleTotalChange(Object.values(data)[0].cart)
+      }
+    })
+    
+    useEffect(() => {
+      if(!loading && data) {
+        handleCartChange(Object.values(data)[0].cart)
+      }
+    }, [data])
+    
   return (
     <Flex direction={{ base: 'column', md: 'row' }} justify="space-between" align="center">
       <CartProductMeta
@@ -76,12 +74,18 @@ export const CartItem = ({
 
       {/* Desktop */}
       <Flex width="full" justify="space-between" display={{ base: 'none', md: 'flex' }}>
-        <QuantitySelect
-          value={quantity}
-          onChange={(e) => {
-            onChangeQuantity?.(+e.currentTarget.value)
-          }}
-        />
+        <Select
+          maxW="64px"
+          aria-label="Select quantity"
+          placeholder={currentQuantity}
+          focusBorderColor={useColorModeValue('blue.500', 'blue.200')}
+          onChange={handleQuantityChange}
+        >
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </Select>
         <PriceTag price={price}/>
         <CloseButton aria-label={`Delete ${name} from cart`} onClick={removeFromCart} />
       </Flex>
@@ -97,12 +101,18 @@ export const CartItem = ({
         <Link fontSize="sm" textDecor="underline">
           Delete
         </Link>
-        <QuantitySelect
-          value={quantity}
-          onChange={(e) => {
-            onChangeQuantity?.(+e.currentTarget.value)
-          }}
-        />
+
+        <Select
+          maxW="64px"
+          aria-label="Select quantity"
+          placeholder={currentQuantity}
+          focusBorderColor={useColorModeValue('blue.500', 'blue.200')}
+        >
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </Select>
         <PriceTag price={price} />
       </Flex>
     </Flex>

@@ -47,4 +47,11 @@ mutation AddToCart($productId: String, $accountId: String) {
   }
 }
 `;
-
+export const CHANGE_QUANTITY = gql`
+  mutation ChangeQuantity($accountId: String, $productId: String, $quantity: Int) {
+    changeQuantity(accountId: $accountId, productId: $productId, quantity: $quantity) {
+      _id
+      email
+    }
+  }
+`
