@@ -125,8 +125,6 @@ const resolvers = {
         },
 
         addToCart: async (parent, { accountId, productId }) => {
-          console.log("i hit it")
-          console.log(accountId, productId)
           return await Account.findOneAndUpdate({ _id: accountId }, { $push: { cart: productId }},{new:true})
         },
 

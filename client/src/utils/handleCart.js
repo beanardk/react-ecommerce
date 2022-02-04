@@ -1,5 +1,5 @@
 
-module.exports.handleCart = (cart) => {
+export default handleCart = (cart) => {
     let newCart = [{ id: cart[0]._id, name: cart[0].name, imageUrl: cart[0].imageURL, price: cart[0].price, quantity: 1, description: cart[0].description }]
     if(cart.length === 1) return newCart
 
