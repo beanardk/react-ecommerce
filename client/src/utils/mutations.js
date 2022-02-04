@@ -24,6 +24,7 @@ export const ADD_ACCOUNT = gql`
   }
 `;
 
+
 export const REMOVE_ALL_FROM_CART = gql`
   mutation RemoveProductFromCart($accountId: String, $productId: String) {
     removeProductFromCart(accountId: $accountId, productId: $productId) {
@@ -38,3 +39,12 @@ export const REMOVE_ALL_FROM_CART = gql`
     }
   }
 `
+
+export const ADD_TO_CART = gql `
+mutation AddToCart($productId: String, $accountId: String) {
+  addToCart(productId: $productId, accountId: $accountId) {
+    email
+  }
+}
+`;
+
