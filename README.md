@@ -15,11 +15,13 @@ Here is our prodcution URL:
 <br>
 https://powerful-sea-85828.herokuapp.com
 
-## Demo
+## Test Credentials
 To access every feature of the site, make sure to create an account which can be found in the navigation bar. You can use the following credentials: 
 <br>
 email: shop@4life.com
 <br>
 password: password
+
+## Demo 
 https://user-images.githubusercontent.com/90587395/152722240-9da0c1d0-8c29-4e7d-a026-a008a6b9219a.mp4
 
