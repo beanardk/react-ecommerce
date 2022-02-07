@@ -10,6 +10,16 @@ Some challenges that arose were conceing the inmplementation of Stripe and the p
 Due to a time constraint, we didn't implement eveything we wanted. For example, for our product page, we wanted a search bar and filter mechanic. Similarly, we also wanted to create a way to view individual products. We also wanted to implement an admin page where sellers would be able to add thier product and post it for sale. 
 
 ## Heroku URL
+Please look over the Demo section which comes after this section.
 Here is our prodcution URL:
+<br>
 https://powerful-sea-85828.herokuapp.com
+
+## Demo
+To access every feature of the site, make sure to create an account which can be found in the navigation bar. You can use the following credentials: 
+<br>
+email: shop@4life.com
+password: password
+<br>
+https://user-images.githubusercontent.com/90587395/152722240-9da0c1d0-8c29-4e7d-a026-a008a6b9219a.mp4
 
