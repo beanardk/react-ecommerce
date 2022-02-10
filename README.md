@@ -36,3 +36,10 @@ password: password
 ## Demo 
 https://user-images.githubusercontent.com/90587395/152722240-9da0c1d0-8c29-4e7d-a026-a008a6b9219a.mp4
 
+
+## Contributors
+* Sebastian Lample, https://github.com/AstrosTech
+* Bernard Kung, https://github.com/beanardk
+* Chad Donahue, https://github.com/chadndonahue
+* Derrick Alvarez, https://github.com/da-2005
+
