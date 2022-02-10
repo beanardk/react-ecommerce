@@ -1,5 +1,13 @@
 # MERN Stack Ecommerce Site
 
+## Technologies 
+* MongoDB and Mongoose
+* React.JS
+* Node.js
+* Express.js
+* Stripe API
+* Chakra UI
+
 ## Description
 We wanted to build an ecommerce site using the MERN Stack to provide users a user-friendly UI and straightforward front-end functionality. Additionally, the MERN Stack proivded us as developers a fast and simple way to conncect our server and Mongo database with the front-end. Our site presents a user with a homepage with featured products but if a user wishes to look at a more extensive selection, then they can simply click on the "Shop" button in our easy to read navigation bar. 
 
@@ -7,7 +15,8 @@ Our product cards have the name and price of our products as well as an add-to-c
 
 Some challenges that arose were the implementation of Stripe and the population of the product page with a list of product cards which essentially meant conncecting our database with our product page. 
 
-Due to a time constraint, we didn't implement eveything we wanted. For example, for our product page, we wanted a search bar and filter mechanic. Similarly, we also wanted to create a way to view individual products cards. We also wanted to implement an admin page where sellers would be able to add thier products and post it for sale. 
+Due to a time constraint, we didn't implement eveything we wanted. For example, for our product page, we wanted a search bar and filter mechanic. Similarly, we also wanted to create a way to view individual products cards. We also wanted to implement an admin page where 
+sellers would be able to add thier products and post it for sale. 
 
 ## Heroku URL
 Please look over the "Test Credentials" section which comes after this section before clicking on the URL.
