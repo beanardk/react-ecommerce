@@ -16,4 +16,4 @@ const handleCart = (cart) => {
     return newCart
 }
 
-export { handleCart }
+export default handleCart
