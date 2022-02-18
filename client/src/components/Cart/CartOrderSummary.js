@@ -2,21 +2,14 @@ import {
   Button,
   Flex,
   Heading,
-  Link,
   Stack,
-  Text,
-  useColorModeValue as mode,
+  Text
 } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { FaArrowRight } from 'react-icons/fa'
 import { formatPrice } from './PriceTag'
 import { useLazyQuery } from '@apollo/client'
 import { CREATE_CHECKOUT } from '../../utils/queries'
-// type OrderSummaryItemProps = {
-//   label: string
-//   value?: string
-//   children?: React.ReactNode
-// }
 
 export const CartOrderSummary = ({ amount, accountId }) => {
 

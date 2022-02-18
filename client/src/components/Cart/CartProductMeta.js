@@ -1,21 +1,11 @@
 import {
   Box,
-  HStack,
-  Icon,
   Image,
-  Link,
   Stack,
   Text,
   useColorModeValue as mode,
 } from '@chakra-ui/react'
 import * as React from 'react'
-
-// export type CartProductMetaProps = {
-//   isGiftWrapping?: boolean
-//   name: string
-//   description: string
-//   image: string
-// }
 
 export const CartProductMeta = ({ image, name, description }) => {
   return (

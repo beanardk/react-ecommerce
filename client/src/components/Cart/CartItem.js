@@ -6,35 +6,13 @@ import { useMutation } from '@apollo/client'
 import { REMOVE_ALL_FROM_CART, CHANGE_QUANTITY } from '../../utils/mutations'
 import Auth from '../../utils/auth'
 
-// const CartItemProps = {
-//   isGiftWrapping?: boolean,
-//   name: string,
-//   description: string,
-//   quantity: number,
-//   price: number,
-//   currency: string,
-//   imageUrl: string,
-//   onChangeQuantity?: (quantity) => {
-      
-//   },
-
-//   onClickGiftWrapping?: () => {
-      
-//   },
-//   onClickDelete?: () => {
-      
-//   }
-// }
-
 export const CartItem = ({
     id,
     name,
     description,
-    quantity,
     imageUrl,
     price,
     handleCartChange,
-    handleTotalChange
   }) => {
 
     let accountId = Auth.getAccount().data._id

@@ -1,16 +1,5 @@
-import { HStack, StackProps, Text, TextProps, useColorModeValue as mode } from '@chakra-ui/react'
+import { HStack, Text, useColorModeValue as mode } from '@chakra-ui/react'
 import * as React from 'react'
-
-// interface PriceTagProps {
-// currency: string
-// price: number
-// salePrice?: number
-// rootProps?: StackProps
-// priceProps?: TextProps
-// salePriceProps?: TextProps
-// }
-
-// export const FormatPriceOptions = { locale?: string, currency?: string }
 
 export function formatPrice(value) {
   const opts = { locale: 'en-US', currency: 'USD' }
