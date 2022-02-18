@@ -4,7 +4,6 @@ import {
     Button,
     Text,
     VStack,
-    MenuItem,
     // useBreakpointValue,
   } from '@chakra-ui/react';
   
@@ -12,7 +11,7 @@ import {
     return (
       <Flex
         w={'full'}
-        h={'70vh'}
+        h={'90vh'}
         backgroundImage={
           'url(https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/streetwear-brands-1627934788.jpg)'
         }
