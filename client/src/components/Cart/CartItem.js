@@ -28,15 +28,8 @@ export const CartItem = ({
       changeQuantity({
           variables: { accountId, productId: id, quantity: parseInt(e.currentTarget.value) },
       });
-
-      window.location.reload()
     }
 
-    // useEffect(() => {
-    //   if(!quantityData.loading && quantityData.data) {
-    //     handleTotalChange(Object.values(data)[0].cart)
-    //   }
-    // }, [quantityData.data])
     
     useEffect(() => {
       if(!loading && data) {
@@ -59,7 +52,7 @@ export const CartItem = ({
           aria-label="Select quantity"
           placeholder={currentQuantity}
           focusBorderColor={useColorModeValue('blue.500', 'blue.200')}
-          onChange={handleQuantityChange}
+          onChange={(e) => handleQuantityChange(e)}
         >
           <option value="1">1</option>
           <option value="2">2</option>

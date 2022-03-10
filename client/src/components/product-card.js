@@ -1,17 +1,13 @@
 import {
     Flex,
-    Circle,
     Box,
     Image,
-    Badge,
     useColorModeValue,
     Icon,
     chakra,
     Tooltip,
-    Link,
-    Button
+    Link
   } from '@chakra-ui/react';
-  import { BsStar, BsStarFill, BsStarHalf } from 'react-icons/bs';
   import { FiShoppingCart } from 'react-icons/fi';
   import Auth from '../utils/auth'
   import { useMutation } from '@apollo/client';
@@ -26,9 +22,18 @@ import {
   // };
   
   
+  var formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+
+  // These options are needed to round to whole numbers if that's what you want.
+  //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+  //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+  });
+
   const ProductAddToCart = (props) => {
     let history = useHistory()
-    const [addToCart, {loading, data}] = useMutation(ADD_TO_CART)
+    const [addToCart] = useMutation(ADD_TO_CART)
     
     const handleAdd = async() => {
       if(Auth.loggedIn() !== true) {
@@ -36,7 +41,7 @@ import {
       }
 
       try {
-        const {data} = await addToCart({ variables:{ accountId: Auth.getAccount().data._id, productId:props._id} })
+        await addToCart({ variables: { accountId: Auth.getAccount().data._id, productId:props._id} })
         return history.push("/cart");
       } catch (e){
         console.error(e)
@@ -89,10 +94,7 @@ import {
   
             <Flex justifyContent="space-between" alignContent="center">
               <Box fontSize="2xl" color={useColorModeValue('gray.800', 'white')}>
-                <Box as="span" color={'gray.600'} fontSize="lg">
-                  £
-                </Box>
-                {props.price.toFixed(2)}
+                {formatter.format(props.price)}
               </Box>
             </Flex>
           </Box>

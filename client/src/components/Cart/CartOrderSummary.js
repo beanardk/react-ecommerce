@@ -5,7 +5,7 @@ import {
   Stack,
   Text
 } from '@chakra-ui/react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { FaArrowRight } from 'react-icons/fa'
 import { formatPrice } from './PriceTag'
 import { useLazyQuery } from '@apollo/client'
@@ -16,6 +16,8 @@ export const CartOrderSummary = ({ amount, accountId }) => {
     const [createCheckout, { loading, data }] = useLazyQuery(CREATE_CHECKOUT, {
         variables: { accountId },
     });
+
+    const [total, setTotal] = useState(amount);
 
     useEffect(() => {
       if(!loading && data) {

@@ -6,14 +6,18 @@ import Auth from '../utils/auth'
 
 const NavBar = (props) => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const loggedIn = Auth.loggedIn()
 
   return (
     <NavBarContainer {...props}>
-      <Logo
-        w="100px"
-        color={["green", "green"]}
-      />
+      <Link
+        href="/"
+      >
+        <Logo
+          w="100px"
+          color={["green", "green"]}
+        />
+      </Link>
+      
       <MenuToggle toggle={() => setIsOpen((isOpen) ? false : true)} isOpen={isOpen} />
       <MenuLinks isOpen={isOpen} />
     </NavBarContainer>
@@ -67,6 +71,7 @@ const MenuLinks = ({ isOpen }) => {
   }
   return (
     <Box
+      to="/"
       display={{ base: isOpen ? "block" : "none", md: "block" }}
       flexBasis={{ base: "100%", md: "auto" }}
     >
@@ -81,19 +86,6 @@ const MenuLinks = ({ isOpen }) => {
         <MenuItem to="/products">Shop</MenuItem>
         <MenuItem to="/cart">
             <Icon as={FiShoppingCart}/>
-        </MenuItem>
-        <MenuItem to="/signup" isLast>
-          <Button
-            size="sm"
-            rounded="md"
-            color={["green", "green", "white", "white"]}
-            bg={["white", "white", "green", "green"]}
-            _hover={{
-              bg: ["gray", "gray", "blue", "blue"]
-            }}
-          >
-            Create Account
-          </Button>
         </MenuItem>
       <div>
         {Auth.loggedIn() ? (
