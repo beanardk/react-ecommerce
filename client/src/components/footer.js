@@ -9,7 +9,6 @@ import {
     Tag,
     useColorModeValue,
   } from '@chakra-ui/react';
-  import { ReactNode } from 'react';
   
   const Logo = (props) => {
     return (
