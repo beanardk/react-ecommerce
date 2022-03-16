@@ -1,19 +1,12 @@
 import React, { useState,useEffect } from 'react';
 import {
-SimpleGrid,
 Box,
-Flex,
-Spacer,
 Wrap,
 WrapItem,
 Center,
 Text,
-useColorModeValue
 } from '@chakra-ui/react'
-import Hero from '../components/hero';
-import Product from '../components/product-card'
-import Footer from '../components/footer';
-import { Link } from 'react-router-dom';
+import Product from '../components/Product Page/product-card'
 import { useQuery } from '@apollo/client';
 import { GET_ALL_PRODUCTS } from '../utils/queries';
 
@@ -21,16 +14,16 @@ import { GET_ALL_PRODUCTS } from '../utils/queries';
 
 const FillProduct = () => {
 
-  const {loading,data} = useQuery(GET_ALL_PRODUCTS)
-  const [product, setProducts] = useState([])
+    const {loading,data} = useQuery(GET_ALL_PRODUCTS)
+    const [product, setProducts] = useState([])
 
-  useEffect(() => {
-    if (!loading && data) {
-        let newProducts = Object.values(data)[0]
+    useEffect(() => {
+        if (!loading && data) {
+            let newProducts = Object.values(data)[0]
 
-        setProducts(newProducts)
-    }
-  },[data])
+            setProducts(newProducts)
+        }
+    },[data])
 
 
     return (
